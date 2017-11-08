@@ -35,8 +35,7 @@ class FileParser:
 
     def write_to_file(self, lines):
         if len(lines) == 0:
-            print "Trying to write 0 lines"
-            return None
+            raise ValueError("Trying to write 0 lines")
 
         try:
             file = open(self.output_file_path)

@@ -41,7 +41,16 @@ class TestFileParser(unittest.TestCase):
     		self.fail("file_parser perse_question() failed with %s" % e)
 
     def test_file_parser_write_to_file(self):
-        pass
+        lines = ["test", "test1"]
+        self.file_parser.write_to_file(lines)
+        file = open(self.file_parser.output_file_path)
+        for idx, line in enumerate(file):
+            self.assertEqual(line.rstrip(), lines[idx])
+
+    def test_file_parser_write_to_file_no_lines(self):
+        lines = []
+        with self.assertRaises(ValueError):
+            self.file_parser.write_to_file(lines)
 
 if __name__ == '__main__':
     unittest.main()
